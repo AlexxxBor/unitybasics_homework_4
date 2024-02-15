@@ -24,10 +24,18 @@ namespace Sample
 
         private void Update()
         {
-            //TODO: Реализовать покадровый поворот через transform с помощью методов
-            //Quaternion.RotateTowards, Quaternion.LookRotation и
-            //параметров rotationSpeed, rotationDirection и Time.deltaTime;
-            //если направление перемещения ноль, то поворот не происходит
+            if (rotationDirection == Vector3.zero)
+            {
+                return;
+            }
+            
+            float deltaAngle = rotationSpeed * Time.fixedDeltaTime;
+            
+            Quaternion currentRotation = transform.rotation;
+            Quaternion targetRotation  = Quaternion.LookRotation(rotationDirection);
+            Quaternion newRotation = Quaternion.RotateTowards(currentRotation, targetRotation, deltaAngle);
+            
+            transform.rotation = newRotation;
         }
     }
 }

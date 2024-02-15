@@ -24,8 +24,7 @@ namespace Sample
 
         private void FixedUpdate()
         {
-            //TODO: Реализовать покадровое перемещение через transform с помощью
-            //параметров moveSpeed, moveDirection и Time.fixedDeltaTime;
+            transform.position += moveDirection * (moveSpeed * Time.fixedDeltaTime);
         }
     }
 }

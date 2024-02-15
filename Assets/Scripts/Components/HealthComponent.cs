@@ -24,12 +24,12 @@ namespace Sample
 
         public void TakeDamage(int damage)
         {
-            //TODO: Реализовать получение урона для параметра health, минимальное значение здоровья равно нулю
+            health = Mathf.Clamp(health - damage, 0, maxHealth);
         }
 
         public void RestoreHitPoints(int range)
         {
-            //TODO: Реализовать восстановление здоровья для параметра health, макс. значение здоровья равно maxHealth.
+            health = Mathf.Clamp(health + range, health, maxHealth);
         }
     }
 }
