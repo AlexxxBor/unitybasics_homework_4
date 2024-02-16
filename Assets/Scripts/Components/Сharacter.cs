@@ -32,11 +32,10 @@ namespace Sample
             {
                 _moveComponent.enabled = false;
                 _rotationComponent.enabled = false;
+                return;
             }
-            else
-            {
-                _rotationComponent.RotationDirection = _moveComponent.MoveDirection;
-            }
+            
+            _rotationComponent.RotationDirection = _moveComponent.MoveDirection;
         }
     }
 }
