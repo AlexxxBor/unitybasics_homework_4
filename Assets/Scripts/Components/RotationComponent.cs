@@ -22,12 +22,25 @@ namespace Sample
         [SerializeField]
         private Vector3 rotationDirection;
 
+        private float _deltaAngle;
+        private Quaternion _currentRotation;
+        private Quaternion _targetRotation;
+        private Quaternion _newRotation;
+
         private void Update()
         {
-            //TODO: Реализовать покадровый поворот через transform с помощью методов
-            //Quaternion.RotateTowards, Quaternion.LookRotation и
-            //параметров rotationSpeed, rotationDirection и Time.deltaTime;
-            //если направление перемещения ноль, то поворот не происходит
+            if (rotationDirection == Vector3.zero)
+            {
+                return;
+            }
+
+            _deltaAngle = rotationSpeed * Time.fixedDeltaTime;
+
+            _currentRotation = transform.rotation;
+            _targetRotation = Quaternion.LookRotation(rotationDirection);
+            _newRotation = Quaternion.RotateTowards(_currentRotation, _targetRotation, _deltaAngle);
+
+            transform.rotation = _newRotation;
         }
     }
 }
