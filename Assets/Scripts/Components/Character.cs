@@ -8,32 +8,31 @@ namespace Sample
     [RequireComponent(typeof(RotationComponent))]
     public sealed class Сharacter : MonoBehaviour
     {
-        [SerializeField] private HealthComponent healthComponent;
-        [SerializeField] private MoveComponent moveComponent;
-        [SerializeField] private RotationComponent rotationComponent;
+        private HealthComponent _healthComponent;
+        private MoveComponent _moveComponent;
+        private RotationComponent _rotationComponent;
 
         private void Awake()
         {
-            healthComponent = GetComponent<HealthComponent>();
-            moveComponent = GetComponent<MoveComponent>();
-            rotationComponent = GetComponent<RotationComponent>();
+            _healthComponent = GetComponent<HealthComponent>();
+            _moveComponent = GetComponent<MoveComponent>();
+            _rotationComponent = GetComponent<RotationComponent>();
         }
 
         private void FixedUpdate()
         {
-            //TODO:
-            //Реализовать вращение персонажа в том же направлении, куда и двигается
-            rotationComponent.RotationDirection = moveComponent.MoveDirection;
-
-            //TODO:
-            //Реализовать условие перемещения и поворота:
-            //перемещаться и вращаться можно если здоровье больше нуля, иначе перемещение и вращение не происходят
-
-            if (healthComponent.Health == 0)
+            if (!_moveComponent.enabled && !_rotationComponent.enabled)
             {
-                moveComponent.enabled = false;
-                rotationComponent.enabled = false;
+                return;
             }
+            
+            if (_healthComponent.Health == 0)
+            {
+                _moveComponent.enabled = !_moveComponent.enabled;
+                _rotationComponent.enabled = !_rotationComponent.enabled;
+            }
+            
+            _rotationComponent.RotationDirection = _moveComponent.MoveDirection;
         }
     }
 }

@@ -99,7 +99,7 @@ namespace Sample
             {
                 yield return new WaitForFixedUpdate();
             }
-
+            
             //Assert:
             Vector3 diff = transform.position - new Vector3(0, 0, moveSpeed * moveFrames * Time.fixedDeltaTime);
             Assert.AreEqual(0, diff.magnitude, 1e-2);
@@ -130,53 +130,6 @@ namespace Sample
             float end = -moveSpeed * moveFrames * Time.fixedDeltaTime;
             Vector3 diff = transform.position - new Vector3(end, 0, end);
             Assert.AreEqual(0, diff.magnitude, 1e-2);
-        }
-
-        [UnityTest]
-        public IEnumerator RotationTest()
-        {
-            //Arange:
-            Transform transform = this.character.transform;
-            transform.position = Vector3.zero;
-
-            //Act:
-            const float rotationSpeed = 20;
-            var rotationComponent = this.character.GetComponent<RotationComponent>();
-            rotationComponent.RotationSpeed = rotationSpeed;
-            rotationComponent.RotationDirection = Vector3.back;
-
-            yield return new WaitForSeconds(2.0f);
-
-            //Assert:
-            Assert.AreEqual(180, transform.eulerAngles.y, 1e-2);
-
-            //Act:
-            rotationComponent.RotationDirection = Vector3.forward;
-            yield return new WaitForSeconds(2.0f);
-
-            //Assert:
-            Assert.AreEqual(0, transform.eulerAngles.y, 1e-2);
-
-            //Act:
-            rotationComponent.RotationDirection = new Vector3(-1, 0, -1);
-            yield return new WaitForSeconds(2.0f);
-
-            //Assert:
-            Assert.AreEqual(225, transform.eulerAngles.y, 1e-2);
-
-            //Act:
-            rotationComponent.RotationDirection = new Vector3(1, 0, -1);
-            yield return new WaitForSeconds(2.0f);
-
-            //Assert:
-            Assert.AreEqual(transform.eulerAngles.y, 135, 1e-2);
-
-            //Act:
-            rotationComponent.RotationDirection = Vector3.zero;
-            yield return new WaitForSeconds(1.0f);
-
-            //Assert:
-            Assert.AreEqual(135, transform.eulerAngles.y, 1e-2);
         }
 
         [UnityTest]

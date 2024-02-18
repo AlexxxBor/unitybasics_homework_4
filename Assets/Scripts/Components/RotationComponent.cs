@@ -22,6 +22,11 @@ namespace Sample
         [SerializeField]
         private Vector3 rotationDirection;
 
+        private float _angleDelta;
+        private Quaternion _currentRotation;
+        private Quaternion _targetRotation;
+        private Quaternion _newRotation;
+
         private void Update()
         {
             if (rotationDirection == Vector3.zero)
@@ -29,13 +34,13 @@ namespace Sample
                 return;
             }
             
-            float deltaAngle = rotationSpeed * Time.fixedDeltaTime;
+            _angleDelta = rotationSpeed * Time.fixedDeltaTime;
             
-            Quaternion currentRotation = transform.rotation;
-            Quaternion targetRotation  = Quaternion.LookRotation(rotationDirection);
-            Quaternion newRotation = Quaternion.RotateTowards(currentRotation, targetRotation, deltaAngle);
+            _currentRotation = transform.rotation;
+            _targetRotation  = Quaternion.LookRotation(rotationDirection);
+            _newRotation = Quaternion.RotateTowards(_currentRotation, _targetRotation, _angleDelta);
             
-            transform.rotation = newRotation;
+            transform.rotation = _newRotation;;
         }
     }
 }

@@ -24,7 +24,16 @@ namespace Sample
 
         public void TakeDamage(int damage)
         {
-            health = Mathf.Clamp(health - damage, 0, maxHealth);
+            if (health - damage <= 0)
+            {
+                health = 0;
+                return;
+            }
+
+            if (damage > 0)
+            {
+                health -= damage;
+            }
         }
 
         public void RestoreHitPoints(int range)
