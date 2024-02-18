@@ -9,6 +9,8 @@ namespace Sample
         [SerializeField] private GameObject player;
         private MoveComponent _playerMoveComponent;
 
+        private Vector3 _userInput;
+
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -17,9 +19,8 @@ namespace Sample
 
         private void Update()
         {
-            //TODO:
-            //Реализовать перемещение и поворот в нужную сторону с помощью нажатия WASD или стрелочек на клавиатуре
-            _playerMoveComponent.MoveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            _userInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            _playerMoveComponent.MoveDirection = _userInput;
         }
     }
 }

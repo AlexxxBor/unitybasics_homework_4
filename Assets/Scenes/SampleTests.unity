@@ -141,7 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1867036683}
-  offset: 0
+  offset: {x: 0, y: 9, z: -11}
+  smoothTime: 0.5
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 334049088684045734, guid: 44b1359c08fd743e991579aa4371793b, type: 3}
       propertyPath: rotationSpeed
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 334049088684045734, guid: 44b1359c08fd743e991579aa4371793b, type: 3}
       propertyPath: rotationDirection.y

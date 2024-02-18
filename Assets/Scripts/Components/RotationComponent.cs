@@ -34,7 +34,7 @@ namespace Sample
                 return;
             }
             
-            _angleDelta = rotationSpeed * Time.fixedDeltaTime;
+            _angleDelta = rotationSpeed * Time.deltaTime;
             
             _currentRotation = transform.rotation;
             _targetRotation  = Quaternion.LookRotation(rotationDirection);
